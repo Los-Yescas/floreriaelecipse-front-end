@@ -1,0 +1,28 @@
+.list{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.list:hover{
+    cursor: pointer;
+}
+
+.list-element{
+    width: 100%;
+    height: 100%;
+    max-width: 250px;
+    max-height: 250px;
+    position: relative;
+    padding: 5%;
+    margin: 1em;
+    background-repeat: no-repeat;
+}
+
+.information{
+    position: relative;
+    top: 10%;
+    bottom: 10%;
+    width: 80%;
+    background-color: white;
+    
+}
