@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import {useNavigate} from "react-router-dom";
-import {getAllLugares} from "../Services/LugarService.js";
+import {getAllLugares} from "../../Services/LugarService.js";
 
 const ListLugar = () => {
     const navigate=useNavigate();
@@ -19,7 +19,7 @@ const ListLugar = () => {
     },[]);
     const crearLugar=() =>
     {
-        navigate("/add-lugar");
+        navigate("/crear-lugar");
     }
     return (
         <div className="container">
@@ -50,7 +50,7 @@ const ListLugar = () => {
                             <td>{lu.id}</td>
                             <td>{lu.pais}</td>
                             <td>{lu.region}</td>
-                            <td>{lu.cuidad}</td>
+                            <td>{lu.ciudad}</td>
 
                         </tr>
                     ))}

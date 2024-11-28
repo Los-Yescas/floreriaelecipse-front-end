@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import {useNavigate} from "react-router-dom";
-import {createDetallepedido} from "../Services/DetallepedidoService.js";
+import {createDetallepedido} from "../../Services/DetallepedidoService.js";
 
 const DetallepedidoComponent = () => {
     const navigate = useNavigate();

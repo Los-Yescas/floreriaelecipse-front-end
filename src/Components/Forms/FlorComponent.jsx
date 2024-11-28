@@ -1,22 +1,38 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from "react-router-dom";
-import { createFlor } from "../Services/FlorService.js";
+import { createFlor } from "../../Services/FlorService.js";
+import { getAllAtributos } from '../../Services/AtributoService.js';
 
 const FlorComponent = () => {
+    
     const navigate = useNavigate();
     const [nombre, setNombre] = useState("");
     const [descripcion, setDescripcion] = useState("");
     const [precio, setPrecio] = useState(0);
     const [imagen, setImagen] = useState("");
     const [stock, setStock] = useState(0);
+    const [lugar, setLugar] = useState("");
+    const [atributos, setAtributos] = useState([])
 
-    const saveFlor = (e) => {
+    const [listaAtributos, setListaAtributos] = useState([{}])
+    useEffect(() => {
+        getAllAtributos().
+        then(res => {
+            setListaAtributos(res.data)
+        })
+    }, [])
+
+    const saveFlor = (e) => { 
         e.preventDefault();
-        const flor = { nombre, descripcion, precio, imagen, stock };
+        const flor = { nombre, descripcion, precio, imagen, stock,
+             origenId: lugar, 
+            atributos: atributos.map(atributo => {return {id: atributo} }) };
+        console.log(flor);
+        
         createFlor(flor)
             .then(res => {
                 console.log(res);
-                navigate('/flor');
+                navigate('/lists/flores');
             })
             .catch(err => console.log(err));
     };
@@ -87,6 +103,42 @@ const FlorComponent = () => {
                                     value={stock}
                                     onChange={(e) => setStock(e.target.value)}
                                 />
+                            </div>
+                            <div className="form-group mt-3">
+                                <label className="form-label">Id del lugar</label>
+                                <input
+                                    type="number"
+                                    placeholder="Ingrese el id del lugar de origen"
+                                    name="lugarId"
+                                    className="form-control"
+                                    value={lugar}
+                                    onChange={(e) => setLugar(e.target.value)}
+                                />
+                            </div>
+                            <div className="form-group mt-3">
+                                <label className="form-label">Atributos</label>
+                                <select 
+                                name="atributos" 
+                                id="atributos-input"
+                                multiple={true}
+                                value={atributos}
+                                onChange={
+                                    event => {
+                                        const options = [...event.target.selectedOptions]
+                                        const values = options.map(option => option.value)
+                                        setAtributos(values);
+                                    }
+                                }
+                                className='form-select'
+                                >
+                                    {
+                                        listaAtributos.map(atributo => (
+                                            <option key={atributo.id} value={atributo.id}>
+                                                {atributo.name}
+                                            </option>
+                                        ))
+                                    }
+                                </select>
                             </div>
 
                             <button type="submit" className="btn btn-outline-success mt-4">

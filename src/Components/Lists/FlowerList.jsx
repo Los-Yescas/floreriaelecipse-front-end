@@ -11,7 +11,6 @@ function FlowerList() {
     .then(res => {
       setFlores(res.data)
       console.log(res.data);
-      
     })
   }, [])
   const [currentFlor, setCurrentFlor] = useState({})
@@ -22,13 +21,13 @@ function FlowerList() {
   return (
     <>
       <FlowerInformation flor={currentFlor} cerrar={clearCurrentFlor}/>
-      <div className='container list'>
+      <div className='container list justify-content-center'>
           {
               flores.map(
                   (flor) => {
                       return (
-                          <div className='list-element' key={flor.id} style={{
-                            background: `url(${flor.imagen})`
+                          <div className='list-element card text-white' key={flor.id} style={{
+                            backgroundImage: `url(${flor.imagen})`
                           }} onClick={()=>{setCurrentFlor(flor)}}>
                               <h2>{flor.nombre}</h2>
                           </div>

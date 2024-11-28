@@ -16,13 +16,37 @@
     padding: 5%;
     margin: 1em;
     background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    border-radius: 10px;
+    border: white 5px solid;
 }
 
 .information{
-    position: relative;
+    position: absolute;
     top: 10%;
     bottom: 10%;
     width: 80%;
+    max-width: 95vw;
+    max-height: 95vh;
     background-color: white;
-    
+    color: black;
+    z-index: 1;
+    border-radius: 10%;
+    border: 5px black dotted;
+
+    justify-content: center;
+    align-items: center;
+
+    padding: 0.8rem;
 }
+
+.information img{
+    max-width: 90%;
+    max-height: 50%;
+}
+
+.information button {
+    margin: 0.5rem;
+}
+

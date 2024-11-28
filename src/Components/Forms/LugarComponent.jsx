@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { createLugar } from '../Services/LugarService.js'; // Ajusta la ruta según tu estructura
+import { createLugar } from '../../Services/LugarService.js'; // Ajusta la ruta según tu estructura
 
 const LugarComponent = () => {
     const [pais, setPais] = useState('');
@@ -15,7 +15,7 @@ const LugarComponent = () => {
         createLugar(lugar)
             .then((response) => {
                 console.log(response.data);
-                navigate('/lugares'); //
+                navigate('/lists/lugares'); //
             })
             .catch((error) => console.error('Error creating lugar:', error));
     };

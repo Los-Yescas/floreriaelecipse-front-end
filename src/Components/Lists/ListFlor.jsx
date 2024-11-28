@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
-import { getAllFlores } from "../Services/FlorService.js";
+import { getAllFlores } from "../../Services/FlorService.js";
 
 const ListFlor = () => {
     const navigate = useNavigate();
@@ -45,6 +45,7 @@ const ListFlor = () => {
                         <th>Descripción</th>
                         <th>Precio</th>
                         <th>Stock</th>
+                        <th>Atributos</th>
                         <th>Imagen</th>
                     </tr>
                     </thead>
@@ -56,6 +57,7 @@ const ListFlor = () => {
                             <td>{fl.descripcion}</td>
                             <td>${fl.precio.toFixed(2)}</td>
                             <td>{fl.stock}</td>
+                            <td>{fl.atributos.map(atributo => `${atributo.name},`)}</td>
                             <td>
                                 <img
                                     src={fl.imagen}
