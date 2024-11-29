@@ -3,14 +3,13 @@ import { getAllFlores } from '../../Services/FloresService'
 import '../../styles/list-styles.css'
 import FlowerInformation from '../hoovers/FlowerInformation'
 
-function FlowerList() {
+function FlowerList(props) {
     const [flores, setFlores] = useState([{}])
 
   useEffect(() => {
     getAllFlores()
     .then(res => {
       setFlores(res.data)
-      console.log(res.data);
     })
   }, [])
   const [currentFlor, setCurrentFlor] = useState({})
@@ -20,7 +19,7 @@ function FlowerList() {
 
   return (
     <>
-      <FlowerInformation flor={currentFlor} cerrar={clearCurrentFlor}/>
+      <FlowerInformation flor={currentFlor} cerrar={clearCurrentFlor} addFlor={props.addFlor}/>
       <div className='container list justify-content-center'>
           {
               flores.map(
