@@ -10,6 +10,7 @@ import LugarComponent from "./Components/Forms/LugarComponent";
 import AtributosList from "./Components/Lists/AtributosList";
 import FooterComponent from "./Components/FooterComponent";
 import AtributoForm from "./Components/Forms/AtributoForm";
+import PedidosList from "./Components/Lists/PedidosList";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path="/lists/flores" element={<ListFlor/>} />
           <Route path="/lists/lugares" element={<ListLugar/>} />
           <Route path="/lists/atributos" element={<AtributosList/>} />
+          <Route path="/lists/pedidos" element={<PedidosList/>} />
           
 
           <Route path="/crear-flor" element={<FlorComponent/>}/>
