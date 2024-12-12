@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import FlowerList from './FlowerList'
-import '../styles/home.css'
 import Carrito from './Carrito'
 import { postPedido } from '../Services/PedidoService'
 
