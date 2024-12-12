@@ -27,7 +27,7 @@ function App() {
           
 
           <Route path="/crear-flor" element={<FlorComponent/>}/>
-          <Route path="/crear-lugar" element={<LugarComponent/>}/>
+          {/* <Route path="/crear-lugar" element={<LugarComponent/>}/> */}
           <Route path="/crear-atributo" element={<AtributoForm/>}/>
 
         </Routes>

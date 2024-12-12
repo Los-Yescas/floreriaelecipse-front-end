@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
-import { getAllFlores } from "../../Services/FlorService.js";
+import { deleteFlor, getAllFlores } from "../../Services/FlorService.js";
+import { getData } from '../../Services/data.js';
 
 const ListFlor = () => {
     const navigate = useNavigate();
@@ -8,20 +9,23 @@ const ListFlor = () => {
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        getAllFlores()
-            .then(res => {
-                setFlores(res.data);
-                console.log(res.data);
-            })
-            .catch(err => {
-                console.error(err);
-                setError("Error al cargar las flores.");
-            });
-    }, []);
+        getData(getAllFlores, setFlores, setError)
+    });
 
     const CrearFlor = () => {
         navigate('/crear-flor');
     };
+    const eliminarFlor = florId => {
+        deleteFlor(florId)
+        .then(res => {
+            console.log(res);
+            alert('Flor eliminada')
+        })
+        .catch(err => {
+            console.error(err);
+            alert(err.message)
+        })
+    }
 
     return (
         <div className="container">
@@ -47,6 +51,7 @@ const ListFlor = () => {
                         <th>Stock</th>
                         <th>Atributos</th>
                         <th>Imagen</th>
+                        <th>Acciones</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -64,6 +69,9 @@ const ListFlor = () => {
                                     alt={fl.nombre}
                                     style={{ width: "100px", height: "auto" }}
                                 />
+                            </td>
+                            <td>
+                                <button className="btn btn-danger" onClick={() => {eliminarFlor(fl.id)}}>Eliminar</button>
                             </td>
                         </tr>
                     ))}

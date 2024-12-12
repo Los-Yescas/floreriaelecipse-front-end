@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
-import { getAllFlores } from '../../Services/FloresService'
-import '../../styles/list-styles.css'
-import FlowerInformation from '../hoovers/FlowerInformation'
+import { getAllFlores } from '../Services/FloresService'
+import '../styles/list-styles.css'
+import FlowerInformation from './hoovers/FlowerInformation'
 
 function FlowerList(props) {
     const [flores, setFlores] = useState([{}])

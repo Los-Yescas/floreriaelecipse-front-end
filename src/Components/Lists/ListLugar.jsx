@@ -24,9 +24,6 @@ const ListLugar = () => {
     return (
         <div className="container">
             <h2 className="text-center">Lista de Lugares</h2>
-            <button className="btn btn-outline-dark mb-4" onClick={crearLugar}>
-                Agregar Lugar
-            </button>
 
             {error && (
                 <div className="alert alert-danger" role="alert">

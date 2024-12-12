@@ -12,6 +12,7 @@ function FlowerInformation(props) {
   function comprarFlor(){
     
     props.addFlor(props.flor, cantidad)
+    setCantidad(1)
     props.cerrar()
   }
   function cancelar(){

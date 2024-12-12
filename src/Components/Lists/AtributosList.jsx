@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { getAllAtributos } from '../../Services/AtributoService';
+import { deleteAtributo, getAllAtributos } from '../../Services/AtributoService';
 
 function AtributosList() {
     const navigate = useNavigate();
@@ -17,11 +17,23 @@ function AtributosList() {
                 console.error(err);
                 setError("Error al cargar los atributos.");
             });
-    }, []);
+    });
 
     const crearAtributo = () => {
         navigate('/crear-atributo');
     };
+
+    const eliminarAtributo = id => {
+        deleteAtributo(id)
+        .then( res => {
+            console.log(res);
+            alert('Atributo eliminado')
+        })
+        .catch(err => {
+            console.error(err);
+            alert(err.message)
+        })
+    }
 
     return (
         <div className="container">
@@ -43,6 +55,7 @@ function AtributosList() {
                         <th>ID</th>
                         <th>Nombre</th>
                         <th>Descripción</th>
+                        <th>Acciones</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -51,6 +64,9 @@ function AtributosList() {
                             <td>{atributo.id}</td>
                             <td>{atributo.name}</td>
                             <td>{atributo.description}</td>
+                            <td><button className="btn btn-danger" onClick={() => {
+                                eliminarAtributo(atributo.id)
+                            }}>Eliminar</button></td>
                         </tr>
                     ))}
                     </tbody>
